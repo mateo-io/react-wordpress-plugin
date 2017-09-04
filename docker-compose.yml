@@ -16,3 +16,11 @@ mariadb:
      - MYSQL_DATABASE=wordpress
     volumes:
      - ./database:/var/lib/mysql
+wpcli:
+  image: tatemz/wp-cli
+  volumes_from:
+    - wordpress
+  links:
+    - mariadb:mysql
+  entrypoint: wp  
+  command: "--info"
